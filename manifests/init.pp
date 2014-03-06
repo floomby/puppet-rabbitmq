@@ -104,7 +104,6 @@ class rabbitmq(
   include '::rabbitmq::install'
   include '::rabbitmq::config'
   include '::rabbitmq::service'
-  include '::rabbitmq::management'
 
   if $rabbitmq::manage_repos == true {
     case $::osfamily {
@@ -147,7 +146,7 @@ class rabbitmq(
 
   Anchor['rabbitmq::begin'] -> Class['::rabbitmq::install']
     -> Class['::rabbitmq::config'] ~> Class['::rabbitmq::service']
-    -> Class['::rabbitmq::management'] -> Anchor['rabbitmq::end']
+    -> Anchor['rabbitmq::end']
 
   # Make sure the various providers have their requirements in place.
   Class['::rabbitmq::install'] -> Rabbitmq_plugin<| |>
