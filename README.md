@@ -18,12 +18,11 @@
 
 This module manages RabbitMQ (www.rabbitmq.com)
 
+It is a fork of puppetlabs/puppetlabs-rabbitmq with some minor changes.
+
 ##Module Description
 The rabbitmq module sets up rabbitmq and has a number of providers to manage
 everything from vhosts to exchanges after setup.
-
-This module has been tested against 2.7.1 and is known to not support
-all features against earlier versions.
 
 ##Setup
 
@@ -55,7 +54,6 @@ disabling puppet support of the service:
 class { '::rabbitmq':
   service_manage    => false,
   port              => '5672',
-  delete_guest_user => true,
 }
 ```
 
@@ -174,10 +172,6 @@ The path to write the RabbitMQ configuration file to.
 ####`config_stomp`
 
 Boolean to enable or disable stomp.
-
-####`delete_guest_user`
-
-Boolean to decide if we should delete the default guest user.
 
 ####`env_config`
 

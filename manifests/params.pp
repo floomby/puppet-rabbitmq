@@ -54,9 +54,6 @@ class rabbitmq::params {
   $config_mirrored_queues     = false
   $config_path                = '/etc/rabbitmq/rabbitmq.config'
   $config_stomp               = false
-  $default_user               = 'guest'
-  $default_pass               = 'guest'
-  $delete_guest_user          = false
   $env_config                 = 'rabbitmq/rabbitmq-env.conf.erb'
   $env_config_path            = '/etc/rabbitmq/rabbitmq-env.conf'
   $erlang_cookie              = 'EOKOWXQREETZSHFNTPEY'

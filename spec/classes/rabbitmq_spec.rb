@@ -200,22 +200,6 @@ describe 'rabbitmq' do
         end
       end
 
-      context 'delete_guest_user' do
-        describe 'should do nothing by default' do
-          it { should_not contain_rabbitmq_user('guest') }
-        end
-
-        describe 'delete user when delete_guest_user set' do
-          let(:params) {{ :delete_guest_user => true }}
-          it 'removes the user' do
-            should contain_rabbitmq_user('guest').with(
-              'ensure'   => 'absent',
-              'provider' => 'rabbitmqctl'
-            )
-          end
-        end
-      end
-
       context 'configuration setting' do
         describe 'node_ip_address when set' do
           let(:params) {{ :node_ip_address => '172.0.0.1' }}
@@ -274,15 +258,6 @@ describe 'rabbitmq' do
         end
       end
 
-      describe 'default_user and default_pass set' do
-        let(:params) {{ :default_user => 'foo', :default_pass => 'bar' }}
-        it 'should set default_user and default_pass to specified values' do
-          contain_file('rabbitmq.config').with({
-            'content' => /default_user, <<"foo">>.*default_pass, <<"bar">>/,
-          })
-        end
-      end
-
       describe 'ssl options' do
         let(:params) {
           { :ssl => true,
@@ -329,22 +304,6 @@ describe 'rabbitmq' do
           should contain_file('rabbitmq.config') \
             .with_content(/\{inet_dist_listen_min, 9100\}/) \
             .with_content(/\{inet_dist_listen_max, 9105\}/) 
-        end
-      end
-
-      context 'delete_guest_user' do
-        describe 'should do nothing by default' do
-          it { should_not contain_rabbitmq_user('guest') }
-        end
-
-        describe 'delete user when delete_guest_user set' do
-          let(:params) {{ :delete_guest_user => true }}
-          it 'removes the user' do
-            should contain_rabbitmq_user('guest').with(
-              'ensure'   => 'absent',
-              'provider' => 'rabbitmqctl'
-            )
-          end
         end
       end
 

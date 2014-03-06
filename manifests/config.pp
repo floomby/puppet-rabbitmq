@@ -8,8 +8,6 @@ class rabbitmq::config {
   $config_path                = $rabbitmq::config_path
   $config_mirrored_queues     = $rabbitmq::config_mirrored_queues
   $config_stomp               = $rabbitmq::config_stomp
-  $default_user               = $rabbitmq::default_user
-  $default_pass               = $rabbitmq::default_pass
   $env_config                 = $rabbitmq::env_config
   $env_config_path            = $rabbitmq::env_config_path
   $erlang_cookie              = $rabbitmq::erlang_cookie
@@ -28,10 +26,7 @@ class rabbitmq::config {
   $config_variables           = $rabbitmq::config_variables
   $config_kernel_variables    = $rabbitmq::config_kernel_variables
   $cluster_partition_handling = $rabbitmq::cluster_partition_handling
-  $default_env_variables      =  {
-    'RABBITMQ_NODE_PORT'        => $port,
-    'RABBITMQ_NODE_IP_ADDRESS'  => $node_ip_address
-  }
+  $default_env_variables      = {}
 
   # Handle env variables.
   $environment_variables = merge($default_env_variables, $rabbitmq::environment_variables)
